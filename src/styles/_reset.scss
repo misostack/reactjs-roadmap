@@ -1,0 +1,52 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+/* Tailwind base */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-heading font-bold;
+}
+
+h6 {
+  @apply text-xs;
+}
+h5 {
+  @apply text-xs;
+}
+h4 {
+  @apply text-sm;
+}
+h3 {
+  @apply text-base;
+}
+h2 {
+  @apply text-2xl;
+}
+h1 {
+  @apply text-3xl;
+}
+
+.clearfix:after {
+  clear: both;
+  content: ".";
+  display: block;
+  width: 0px;
+  height: 0px;
+}
+
+input {
+  @apply focus-visible:outline-none;
+}
+
+.container {
+  @apply max-w-screen-xl px-4 py-4 mx-auto;
+}
