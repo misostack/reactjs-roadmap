@@ -85,7 +85,7 @@ import examplePDF from "./assets/files/example.pdf";
 ```
 
 ```js
-import { ReactComponent as JSLogo } from "./assets/images/js.svg";
+import { ReactComponent as JSLogo } from './assets/images/js.svg'
 ```
 
 > The ReactComponent import name is significant and tells Create React App that you want a React component that renders an SVG, rather than its filename
@@ -110,12 +110,12 @@ npm install -D tailwindcss postcss autoprefixer
 
 ```js
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
-};
+  plugins: []
+}
 ```
 
 #### Using Typescript
@@ -127,6 +127,60 @@ npm install --save typescript @types/node @types/react @types/react-dom @types/j
 > \*.js -> .ts/.tsx
 
 #### Formatting Code Automatically
+
+- [Eslint Typescript](https://typescript-eslint.io/docs/)
+- [Eslint Config sample](https://eslint.org/docs/latest/user-guide/configuring/configuration-files)
+
+```bash
+npx eslint --init
+npm install -D eslint-plugin-jest
+```
+
+> .eslintignore
+
+```bash
+**/node_modules
+node_modules
+```
+
+> .eslintrc.js
+
+```js
+module.exports = {
+  env: {
+    browser: true,
+    es2021: true,
+    'jest/globals': true
+  },
+  extends: ['plugin:react/recommended', 'standard'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module'
+  },
+  plugins: ['react', '@typescript-eslint', 'jest'],
+  rules: {
+    'jest/no-disabled-tests': 'warn',
+    'jest/no-focused-tests': 'error',
+    'jest/no-identical-title': 'error',
+    'jest/prefer-to-have-length': 'warn',
+    'jest/valid-expect': 'error'
+  }
+}
+```
+
+> package.json : lint script
+
+```json
+"lint": "eslint . --ext .tsx --ext .ts -c .eslintrc.js --fix",
+```
+
+```bash
+npm run lint
+```
 
 #### Component Basic
 

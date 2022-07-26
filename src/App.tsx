@@ -1,13 +1,14 @@
-import "./App.scss";
-import React from "react";
-import { ReactComponent as JSLogo } from "./assets/images/js.svg";
-import CustomSVG from "./assets/images/custom.svg";
-import countryCodes from "./assets/data/country-codes.json";
-import examplePDF from "./assets/files/example.pdf";
+import './App.scss'
+import React from 'react'
+import { ReactComponent as JSLogo } from './assets/images/js.svg'
+import CustomSVG from './assets/images/custom.svg'
+import countryCodes from './assets/data/country-codes.json'
+import examplePDF from './assets/files/example.pdf'
 
-function App() {
-  const appName = "ReactJS Roadmap";
-  const logoImageSrc = `${process.env.PUBLIC_URL}/images/logo.png`;
+function App () {
+  const appName = 'ReactJS Roadmap'
+  console.error('aa')
+  const logoImageSrc = `${process.env.PUBLIC_URL}/images/logo.png`
   return (
     <>
       <h1 className="App">{appName}</h1>
@@ -19,7 +20,7 @@ function App() {
 
       <iframe title="PDF Preview" src={examplePDF} frameBorder="0"></iframe>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
