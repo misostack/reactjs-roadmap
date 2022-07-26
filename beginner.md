@@ -118,9 +118,15 @@ module.exports = {
 };
 ```
 
-#### Formatting Code Automatically
-
 #### Using Typescript
+
+```bash
+npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+```
+
+> \*.js -> .ts/.tsx
+
+#### Formatting Code Automatically
 
 #### Component Basic
 

@@ -1,4 +1,5 @@
 import "./App.scss";
+import React from "react";
 import { ReactComponent as JSLogo } from "./assets/images/js.svg";
 import CustomSVG from "./assets/images/custom.svg";
 import countryCodes from "./assets/data/country-codes.json";
