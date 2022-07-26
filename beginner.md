@@ -85,7 +85,7 @@ import examplePDF from "./assets/files/example.pdf";
 ```
 
 ```js
-import { ReactComponent as JSLogo } from './assets/images/js.svg'
+import { ReactComponent as JSLogo } from './assets/images/js.svg';
 ```
 
 > The ReactComponent import name is significant and tells Create React App that you want a React component that renders an SVG, rather than its filename
@@ -115,7 +115,7 @@ module.exports = {
     extend: {}
   },
   plugins: []
-}
+};
 ```
 
 #### Using Typescript
@@ -169,7 +169,7 @@ module.exports = {
     'jest/prefer-to-have-length': 'warn',
     'jest/valid-expect': 'error'
   }
-}
+};
 ```
 
 > package.json : lint script
@@ -200,8 +200,128 @@ git commit --no-verify
 
 #### Component Basic
 
-- [x] Hello world
-- [ ] JSX
+##### Stateless or Dump Component Example
+
+**JSX**
+
+> Fundamentally, JSX just provides syntactic sugar for the React.createElement(component, props, ...children) function
+
+- [Prop Type Check](https://reactjs.org/docs/typechecking-with-proptypes.html)
+
+```js
+npm install prop-types --save
+```
+
+> Define custom type is value in array
+
+```ts
+import React from 'react';
+import PropTypes from 'prop-types';
+
+export const COLORS = [
+  'gray',
+  'red',
+  'orange',
+  'amber',
+  'yellow',
+  'lime',
+  'green',
+  'emerald',
+  'teal',
+  'cyan',
+  'sky',
+  'blue',
+  'indigo',
+  'violet',
+  'purple'
+] as const;
+
+Tag.propTypes = {
+  color: PropTypes.oneOf(COLORS)
+};
+
+type Color = typeof COLORS[number];
+
+function Tag(props: { color: Color; children: React.ReactNode }) {
+  const { color, children } = props;
+  return <span className={`bg-${color}-400`}>{children || ''}</span>;
+}
+
+export default Tag;
+```
+
+> Tailwind: Dynamically build classnames in tailwindcss
+
+```js
+const buttonConfig = {
+  // Colors
+  primary: {
+    bgColor: 'bg-primary-500',
+    color: 'text-white',
+    outline:
+      'border-primary-500 text-primary-500 bg-opacity-0 hover:bg-opacity-10'
+  },
+  secondary: {
+    bgColor: 'bg-secondary-500',
+    color: 'text-white',
+    outline:
+      'border-secondary-500 text-secondary-500 bg-opacity-0 hover:bg-opacity-10'
+  },
+
+  // Sizes
+  small: 'px-3 py-2',
+  medium: 'px-4 py-2',
+  large: 'px-5 py-2'
+};
+```
+
+> Or [self-listing class](https://tailwindcss.com/docs/content-configuration#safelisting-classes)
+
+```js
+const tailwindColors = require('./node_modules/tailwindcss/colors');
+const colorSafeList = [];
+
+// Skip these to avoid a load of deprecated warnings when tailwind starts up
+const deprecated = [
+  'lightBlue',
+  'warmGray',
+  'trueGray',
+  'coolGray',
+  'blueGray'
+];
+
+for (const colorName in tailwindColors) {
+  if (deprecated.includes(colorName)) {
+    continue;
+  }
+
+  const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
+
+  const pallette = tailwindColors[colorName];
+
+  if (typeof pallette === 'object') {
+    shades.forEach(shade => {
+      if (shade in pallette) {
+        colorSafeList.push(`text-${colorName}-${shade}`);
+        colorSafeList.push(`bg-${colorName}-${shade}`);
+      }
+    });
+  }
+}
+
+// tailwind.config.js
+module.exports = {
+  safelist: colorSafeList,
+  content: ['{pages,app}/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      colors: tailwindColors
+    }
+  },
+  plugins: []
+};
+```
+
 - [ ] Rendering
 - [ ] Components and Props
 - [ ] State and Lifecycle
