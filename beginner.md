@@ -322,8 +322,110 @@ module.exports = {
 };
 ```
 
-- [ ] Rendering
-- [ ] Components and Props
+##### JSX Syntax
+
+```tsx
+const appName = 'ReactJS Roadmap';
+const displayTagName = (color: string) => {
+  return `${color}`.toUpperCase();
+};
+
+<h1 className="App">{appName}</h1>;
+<div className="flex justify-around">
+  {COLORS.map(c => (
+    <Tag key={c} color={c}>
+      {displayTagName(c)}
+    </Tag>
+  ))}
+</div>;
+```
+
+> How to render HTML with JSX
+
+```jsx
+const htmlContent =
+  '<a href="javascript:console.log(localStorage.setItem(`XSS`, new Date().toString())); var values={ ...localStorage }; alert(`XSS attack` + JSON.stringify(values));">HTML Content</h3>';
+<div dangerouslySetInnerHTML={{ __html: htmlContent }}></div>;
+
+// XSS Attack
+<a
+  className="p-4 bg-red-600 inline-block"
+  href={
+    'javascript:console.log(localStorage.setItem("XSS", new Date().toString())); var values={ ...localStorage }; alert("XSS attack" + JSON.stringify(values));'
+  }
+>
+  XSS attack
+</a>;
+```
+
+#### [x] Rendering
+
+> React elements are **immutable**. Once you create an element, you can’t change its children or attributes. An element is like a single frame in a movie: it represents the UI at a certain point in time.
+
+> In practice, most React apps only call root.render() once
+
+```jsx
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+)
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)
+```
+
+#### [x] Components and Props
+
+> Function and Class Components
+
+```jsx
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+```
+
+```jsx
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+```
+
+When working with components, we always:
+
+- Composing Components : stack related components together
+- Extracting Components: split components into smaller components
+
+##### Props are Read-Only
+
+> All React components must act like pure functions with respect to their props.
+
+> Question: what's happened?
+
+```jsx
+export const COLORS = ['gray', 'red', 'orange'];
+
+function Tag(props: { color: Color, children: React.ReactNode }) {
+  props.color = 'cyan';
+  const { color, children } = props;
+  return <span className={`bg-${color}-400 p-4`}>{children || ''}</span>;
+}
+
+function App() {
+  return (
+    <div className="flex justify-around">
+      {COLORS.map(c => (
+        <Tag key={c} color={c}>
+          {displayTagName(c)}
+        </Tag>
+      ))}
+    </div>
+  );
+}
+```
+
 - [ ] State and Lifecycle
 - [ ] Handling Events
 - [ ] Template: conditional, lists & keys

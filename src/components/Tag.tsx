@@ -27,7 +27,7 @@ type Color = typeof COLORS[number];
 
 function Tag(props: { color: Color; children: React.ReactNode }) {
   const { color, children } = props;
-  return <span className={`bg-${color}-400`}>{children || ''}</span>;
+  return <span className={`bg-${color}-400 p-4`}>{children || ''}</span>;
 }
 
 export default Tag;

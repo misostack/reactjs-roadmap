@@ -8,16 +8,31 @@ import Tag, { COLORS } from './components/Tag';
 
 function App() {
   const appName = 'ReactJS Roadmap';
+  const displayTagName = (color: string) => {
+    return `${color}`.toUpperCase();
+  };
 
   const logoImageSrc = `${process.env.PUBLIC_URL}/images/logo.png`;
+  const htmlContent =
+    '<a href="javascript:console.log(localStorage.setItem(`XSS`, new Date().toString())); var values={ ...localStorage }; alert(`XSS attack` + JSON.stringify(values));">HTML Content</h3>';
+  const dangerousHref =
+    'javascript:console.log(localStorage.setItem("XSS", new Date().toString())); var values={ ...localStorage }; alert("XSS attack" + JSON.stringify(values));';
   return (
     <>
       <h1 className="App">{appName}</h1>
-      {COLORS.map(c => (
-        <Tag key={c} color={c}>
-          ReactJS Tag
-        </Tag>
-      ))}
+      <div className="m-2">
+        <a className="p-4 bg-red-600 inline-block" href={dangerousHref}>
+          XSS attack
+        </a>
+        <div dangerouslySetInnerHTML={{ __html: htmlContent }}></div>
+      </div>
+      <div className="flex justify-around">
+        {COLORS.map(c => (
+          <Tag key={c} color={c}>
+            {displayTagName(c)}
+          </Tag>
+        ))}
+      </div>
       <img src={logoImageSrc} alt="ReactJS Roadmap by SONNM" />
       <JSLogo />
       <p>Filepath: {CustomSVG}</p>
