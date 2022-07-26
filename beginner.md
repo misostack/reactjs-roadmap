@@ -182,6 +182,22 @@ module.exports = {
 npm run lint
 ```
 
+**Husky**
+
+```bash
+npm install husky -D
+npx husky install
+# add this line to package.json scripts
+# "prepare": "husky install"
+npx husky add .husky/pre-commit "npm run lint && npm run build"
+```
+
+> Sometimes, you need to by pass the pre commit to do quick fix or rebase, ...etc.
+
+```bash
+git commit --no-verify
+```
+
 #### Component Basic
 
 - [x] Hello world

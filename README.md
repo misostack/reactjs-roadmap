@@ -59,3 +59,4 @@
 ## References
 
 - [ReactJS Typescript Cheatsheet](https://github.com/typescript-cheatsheets/react#reacttypescript-cheatsheets)
+- [ESLINT Plugin React Rules](https://github.com/jsx-eslint/eslint-plugin-react#configuration)
