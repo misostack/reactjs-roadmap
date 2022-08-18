@@ -10,6 +10,32 @@
 - [x] Component Basic
 - [x] React Router
 
+### Basic
+
+- [x] Basic Routing - Matching request paths to their respective components.
+- [x] Rendering Elements - Generating dynamic HTML elements such as lists or forms.
+- [x] State Management (Internal Component State) - Creating and updating state values in class components.
+- [x] Handling Events - Execute functions and Update state variables when an event occurs.
+- [x] ES6 and JavaScript - Creating functions including arrow functions to manipulate data and its display as page elements.
+- [x] Form Validation - Validating form data against rules before accepting input and alerting the user with an error message when validation fails.
+
+### Intermediate
+
+- [x] Components and Props (Controlled Components, Multiple, Component Lifecycle) - Manage controlled components through hooks or using setState(), familiarity with passing properties from one component to another, familiarity with the component lifecycle, e.g. (un)mounting, updating, error handling
+- [x] Routing with Params - Rendering views based on parameters in the URL and creating navigation bars.
+- [x] Use APIs - Fetching data using web requests, process and display data retrieved
+- [x] Basic Hooks (useState, useEffect) - Familiarity with the two most commonly used hooks: useState and useEffect.
+- [x] Controlled and Uncontrolled Components
+
+### Advanced
+
+- [x] Business Logic - Integrate framework knowledge with business logic.
+- [x] Unit Testing - Creating and running comprehensive unit tests on the React application.
+- [x] Debugging React - Identifying problems based on error messages, deep knowledge of syntax and semantics, knowledge of common errors in renders, state management, etc.
+- [x] Hooks (useEffect with dependencies, useLayoutEffect, custom hooks) - Using useEffect with dependencies to limit new renders, use useLayoutEffect and create and use custom hooks.
+- [x] Error Boundaries - Catch unexpected errors and display a fallback UI.
+- [x] React Context API - Create and use context to pass information to descendants
+
 - Create new app with [Create React App](https://create-react-app.dev/)
 
 ```bash
