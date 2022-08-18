@@ -14,7 +14,7 @@ export class Example {
     this.updatedAt = now;
   }
 
-  toJSON() {
+  toString() {
     return JSON.stringify(this);
   }
 

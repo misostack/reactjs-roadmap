@@ -1,12 +1,13 @@
 import './App.scss';
 import React from 'react';
-import { StateExample } from './components/StateExample';
+// import { StateExample } from './components/StateExample';
+import { ContextExample } from './components/ContextExample';
 
 function App() {
   return (
     <>
       <h1>Demo</h1>
-      <StateExample></StateExample>
+      <ContextExample color="green"></ContextExample>
     </>
   );
 }
