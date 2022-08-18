@@ -1,9 +1,10 @@
 import React from 'react';
+import { PropExample } from './PropExample';
 
-class Example {
-  private title: string;
-  private createdAt: Date;
-  private updatedAt: Date;
+export class Example {
+  private title?: string;
+  private createdAt?: Date;
+  private updatedAt?: Date;
   private description!: string;
 
   constructor(title: string) {
@@ -13,7 +14,7 @@ class Example {
     this.updatedAt = now;
   }
 
-  toString() {
+  toJSON() {
     return JSON.stringify(this);
   }
 
@@ -55,7 +56,11 @@ export class StateExample extends React.Component {
   }
 
   render() {
-    const { example } = this.state as { example: any };
-    return <>{example.toString()}</>;
+    const { example } = this.state as { example: Example };
+    return (
+      <>
+        <PropExample example={example}></PropExample>
+      </>
+    );
   }
 }
