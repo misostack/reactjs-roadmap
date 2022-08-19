@@ -4,6 +4,7 @@ import React from 'react';
 // import { ContextExample } from './components/ContextExample';
 import { MultiLevelMenuExample } from './components/MultiLevelMenuExample';
 import { StateUpdateExample } from './components/StateUpdateExample';
+import { SyntheticEventExample } from './components/SyntheticEventExample';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <h1>Demo</h1>
       <StateUpdateExample />
       <MultiLevelMenuExample />
+      <SyntheticEventExample />
     </>
   );
 }

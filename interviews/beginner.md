@@ -368,8 +368,52 @@ export class MultiLevelMenuExample extends React.Component<
 
 ## 8. State Update is Synchronous or Asynchoronous?
 
+> State Update is Asynchoronous
+
 ```tsx
 
 ```
 
 ## 9.How to bind methods or event handlers in JSX callbacks?
+
+## 10. What is Synthetic Events in React?
+
+> In order to work as a cross-browser application, React has created a wrapper same as the native browser in order to avoid creating multiple implementations for multiple methods for multiple browsers, creating common names for all events across browsers.
+
+> Does this code work good for cross browsers?
+
+```tsx
+import React from 'react';
+
+export class SyntheticEventExample extends React.Component<
+  any,
+  { x: number; y: number }
+> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      x: 0,
+      y: 0
+    };
+  }
+
+  updateMousePointer = (e: MouseEvent) => {
+    this.setState({ x: e.x, y: e.y });
+  };
+
+  componentDidMount() {
+    window.addEventListener('mousemove', this.updateMousePointer);
+  }
+
+  render(): React.ReactNode {
+    const { x, y } = this.state;
+    return (
+      <>
+        <p>
+          X: {x} Y: {y}
+        </p>
+      </>
+    );
+  }
+}
+```
