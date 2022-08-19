@@ -365,3 +365,11 @@ export class MultiLevelMenuExample extends React.Component<
   }
 }
 ```
+
+## 8. State Update is Synchronous or Asynchoronous?
+
+```tsx
+
+```
+
+## 9.How to bind methods or event handlers in JSX callbacks?

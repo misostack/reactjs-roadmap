@@ -3,11 +3,13 @@ import React from 'react';
 // import { StateExample } from './components/StateExample';
 // import { ContextExample } from './components/ContextExample';
 import { MultiLevelMenuExample } from './components/MultiLevelMenuExample';
+import { StateUpdateExample } from './components/StateUpdateExample';
 
 function App() {
   return (
     <>
       <h1>Demo</h1>
+      <StateUpdateExample />
       <MultiLevelMenuExample />
     </>
   );
