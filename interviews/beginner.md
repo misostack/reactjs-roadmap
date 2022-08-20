@@ -369,9 +369,144 @@ export class MultiLevelMenuExample extends React.Component<
 ## 8. State Update is Synchronous or Asynchoronous?
 
 > State Update is Asynchoronous
+> React may batch multiple setState calls into a single update for performance(the last wins). Because props and state may be updated asynchronously, you should not rely on their values for calculating the next state.
 
 ```tsx
+import React from 'react';
 
+type LifeCycleExampleProps = {
+  [key: string]: any;
+};
+
+type LifeCycleExampleState = {
+  [key: string]: any;
+};
+
+export class LifeCycleExample extends React.Component<
+  LifeCycleExampleProps,
+  LifeCycleExampleState
+> {
+  timerId: any;
+
+  constructor(props: LifeCycleExampleProps) {
+    super(props);
+    this.state = {
+      time: new Date(),
+      timerObject: {
+        count: 0
+      }
+    };
+  }
+
+  componentDidMount() {
+    this.timerId = setInterval(() => {
+      this.setState({
+        time: new Date()
+      });
+      const { timerObject } = this.state;
+      timerObject.count += 1;
+    }, 1000);
+  }
+
+  render(): React.ReactNode {
+    const { time } = this.state;
+    return (
+      <>
+        <div>
+          <h3>LifeCycleExample</h3>
+          <Timer time={time} count={this.state.timerObject.count} />
+        </div>
+      </>
+    );
+  }
+}
+type TimerProps = {
+  time: Date;
+  count: number;
+};
+const Timer = (props: TimerProps) => {
+  const { time, count } = props;
+  return (
+    <>
+      <p>{time.toString()}</p>
+      <p>{count}</p>
+    </>
+  );
+};
+```
+
+```tsx
+import React from 'react';
+
+type LifeCycleExampleProps = {
+  [key: string]: any;
+};
+
+type LifeCycleExampleState = {
+  [key: string]: any;
+};
+
+export class LifeCycleExample extends React.Component<
+  LifeCycleExampleProps,
+  LifeCycleExampleState
+> {
+  timerId: any;
+
+  constructor(props: LifeCycleExampleProps) {
+    super(props);
+    this.state = {
+      time: new Date(),
+      timerObject: {
+        count: 0
+      }
+    };
+  }
+
+  componentDidMount() {
+    this.timerId = setInterval(() => {
+      this.setState({
+        timerObject: {
+          count: this.state.timerObject.count + 1
+        }
+      });
+      this.setState({
+        timerObject: {
+          count: this.state.timerObject.count + 2
+        }
+      });
+      this.setState({
+        timerObject: {
+          count: this.state.timerObject.count + 3
+        }
+      });
+    }, 1000);
+  }
+
+  render(): React.ReactNode {
+    const { time } = this.state;
+    return (
+      <>
+        <div>
+          <h3>LifeCycleExample</h3>
+          <Timer time={time} count={this.state.timerObject.count} />
+        </div>
+      </>
+    );
+  }
+}
+type TimerProps = {
+  time: Date;
+  count: number;
+};
+const Timer = (props: TimerProps) => {
+  const { time, count } = props;
+  return (
+    <>
+      <p>{time.toString()}</p>
+      <p>{count}</p>
+    </>
+  );
+};
 ```
 
 ## 9.How to bind methods or event handlers in JSX callbacks?

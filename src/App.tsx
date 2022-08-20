@@ -1,18 +1,17 @@
 import './App.scss';
 import React from 'react';
+import { LifeCycleExample } from './components/LifeCycleExample';
 // import { StateExample } from './components/StateExample';
 // import { ContextExample } from './components/ContextExample';
-import { MultiLevelMenuExample } from './components/MultiLevelMenuExample';
-import { StateUpdateExample } from './components/StateUpdateExample';
-import { SyntheticEventExample } from './components/SyntheticEventExample';
+// import { MultiLevelMenuExample } from './components/MultiLevelMenuExample';
+// import { StateUpdateExample } from './components/StateUpdateExample';
+// import { SyntheticEventExample } from './components/SyntheticEventExample';
 
 function App() {
   return (
     <>
       <h1>Demo</h1>
-      <StateUpdateExample />
-      <MultiLevelMenuExample />
-      <SyntheticEventExample />
+      <LifeCycleExample></LifeCycleExample>
     </>
   );
 }
