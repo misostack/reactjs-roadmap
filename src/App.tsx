@@ -1,7 +1,10 @@
 import './App.scss';
 import React from 'react';
+
+import { StateCheckboxListExample } from './components/StateCheckboxListExample';
+// import { StateMutationHookExample } from './components/StateMutationHookExample';
 // import { LifeCycleExample } from './components/LifeCycleExample';
-import { StateMutateExample } from './components/StateMutateExample';
+// import { StateMutateExample } from './components/StateMutateExample';
 // import { StateExample } from './components/StateExample';
 // import { ContextExample } from './components/ContextExample';
 // import { MultiLevelMenuExample } from './components/MultiLevelMenuExample';
@@ -12,8 +15,23 @@ function App() {
   return (
     <>
       <h1>Demo</h1>
-      <StateMutateExample></StateMutateExample>
-      {/* <LifeCycleExample></LifeCycleExample> */}
+
+      <StateCheckboxListExample
+        options={[
+          {
+            text: 'Option 1',
+            value: '1'
+          },
+          {
+            text: 'Option 2',
+            value: '2'
+          },
+          {
+            text: 'Option 3',
+            value: '3'
+          }
+        ]}
+      ></StateCheckboxListExample>
     </>
   );
 }
