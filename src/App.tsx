@@ -2,6 +2,7 @@ import './App.scss';
 import React from 'react';
 
 import { StateCheckboxListExample } from './components/StateCheckboxListExample';
+import { StateArrayExample } from './components/StateArrayExample';
 // import { StateMutationHookExample } from './components/StateMutationHookExample';
 // import { LifeCycleExample } from './components/LifeCycleExample';
 // import { StateMutateExample } from './components/StateMutateExample';
@@ -15,6 +16,8 @@ function App() {
   return (
     <>
       <h1>Demo</h1>
+
+      <StateArrayExample values={[1, 2, 3, 4, 5]}></StateArrayExample>
 
       <StateCheckboxListExample
         options={[

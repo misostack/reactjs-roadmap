@@ -128,6 +128,101 @@ export class StateMutateExample extends Component {
 }
 ```
 
+```tsx
+import React, { useState } from 'react';
+type StateArrayExampleValues = Array<number>;
+type StateArrayExampleProps = {
+  values?: StateArrayExampleValues;
+};
+
+export const StateArrayExample = (
+  props: StateArrayExampleProps = { values: [] }
+) => {
+  const [numbers, setNumbers] = useState<StateArrayExampleValues>([
+    ...(props.values || [])
+  ]);
+  const addNumber = () => {
+    setNumbers(previousState => {
+      previousState.push(Math.floor(Math.random() * 1000));
+      return previousState;
+    });
+  };
+  const removeNumber = (idx: number) => {
+    setNumbers(previousState => {
+      previousState.splice(idx, 1);
+      return previousState;
+    });
+  };
+  return (
+    <>
+      <button onClick={addNumber}>Add number</button>
+      <ul>
+        {numbers.map((n, idx) => (
+          <li key={n}>
+            {n} -{' '}
+            <button
+              onClick={() => {
+                removeNumber(idx);
+              }}
+            >
+              remove
+            </button>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+};
+```
+
+```tsx
+import React, { useState } from 'react';
+type StateArrayExampleValues = Array<number>;
+type StateArrayExampleProps = {
+  values?: StateArrayExampleValues;
+};
+
+export const StateArrayExample = (
+  props: StateArrayExampleProps = { values: [] }
+) => {
+  const [numbers, setNumbers] = useState<StateArrayExampleValues>([
+    ...(props.values || [])
+  ]);
+
+  const addNumber = () => {
+    setNumbers(previousState => {
+      previousState.push(Math.floor(Math.random() * 1000));
+      return [...previousState];
+    });
+  };
+  const removeNumber = (idx: number) => {
+    setNumbers(previousState => {
+      previousState.splice(idx, 1);
+      return [...previousState];
+    });
+  };
+  return (
+    <>
+      <button onClick={addNumber}>Add number</button>
+      <ul>
+        {numbers.map((n, idx) => (
+          <li key={n}>
+            {n} -{' '}
+            <button
+              onClick={() => {
+                removeNumber(idx);
+              }}
+            >
+              remove
+            </button>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+};
+```
+
 ## 3.What are props in React?
 
 > Props are one of the most basic ways of passing data between components in ReactJS.
