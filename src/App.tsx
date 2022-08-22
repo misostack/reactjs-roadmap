@@ -1,6 +1,7 @@
 import './App.scss';
 import React from 'react';
-import { LifeCycleExample } from './components/LifeCycleExample';
+// import { LifeCycleExample } from './components/LifeCycleExample';
+import { StateMutateExample } from './components/StateMutateExample';
 // import { StateExample } from './components/StateExample';
 // import { ContextExample } from './components/ContextExample';
 // import { MultiLevelMenuExample } from './components/MultiLevelMenuExample';
@@ -11,7 +12,8 @@ function App() {
   return (
     <>
       <h1>Demo</h1>
-      <LifeCycleExample></LifeCycleExample>
+      <StateMutateExample></StateMutateExample>
+      {/* <LifeCycleExample></LifeCycleExample> */}
     </>
   );
 }

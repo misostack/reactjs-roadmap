@@ -96,6 +96,38 @@ export class StateExample extends React.Component {
 
 ```
 
+> State & Object
+
+```ts
+import React, { Component } from 'react';
+
+export class StateMutateExample extends Component {
+  state = {
+    color: 'green',
+    size: 20
+  };
+
+  handleClick = () => {
+    const newState = this.state;
+    newState.color = 'red';
+    this.setState(newState);
+  };
+
+  render() {
+    const { color, size } = this.state;
+    return (
+      <>
+        <p>Color: {color}</p>
+        <p>Size: {size}</p>
+        <button className="bg-red-300" onClick={this.handleClick}>
+          Change Color
+        </button>
+      </>
+    );
+  }
+}
+```
+
 ## 3.What are props in React?
 
 > Props are one of the most basic ways of passing data between components in ReactJS.
