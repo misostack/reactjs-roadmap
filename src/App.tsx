@@ -1,8 +1,9 @@
 import './App.scss';
 import React from 'react';
+import { HookExample } from './components/HookExample';
 
-import { StateCheckboxListExample } from './components/StateCheckboxListExample';
-import { StateArrayExample } from './components/StateArrayExample';
+// import { StateCheckboxListExample } from './components/StateCheckboxListExample';
+// import { StateArrayExample } from './components/StateArrayExample';
 // import { StateMutationHookExample } from './components/StateMutationHookExample';
 // import { LifeCycleExample } from './components/LifeCycleExample';
 // import { StateMutateExample } from './components/StateMutateExample';
@@ -15,26 +16,7 @@ import { StateArrayExample } from './components/StateArrayExample';
 function App() {
   return (
     <>
-      <h1>Demo</h1>
-
-      <StateArrayExample values={[1, 2, 3, 4, 5]}></StateArrayExample>
-
-      <StateCheckboxListExample
-        options={[
-          {
-            text: 'Option 1',
-            value: '1'
-          },
-          {
-            text: 'Option 2',
-            value: '2'
-          },
-          {
-            text: 'Option 3',
-            value: '3'
-          }
-        ]}
-      ></StateCheckboxListExample>
+      <HookExample></HookExample>
     </>
   );
 }
