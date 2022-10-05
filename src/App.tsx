@@ -1,6 +1,5 @@
 import './App.scss';
 import React from 'react';
-import { HookExample } from './components/HookExample';
 
 // import { StateCheckboxListExample } from './components/StateCheckboxListExample';
 // import { StateArrayExample } from './components/StateArrayExample';
@@ -12,11 +11,13 @@ import { HookExample } from './components/HookExample';
 // import { MultiLevelMenuExample } from './components/MultiLevelMenuExample';
 // import { StateUpdateExample } from './components/StateUpdateExample';
 // import { SyntheticEventExample } from './components/SyntheticEventExample';
+// import { HookExample } from './components/HookExample';
+import StateManagementUserInterface from './components/StateManagementUserInterface';
 
 function App() {
   return (
     <>
-      <HookExample></HookExample>
+      <StateManagementUserInterface></StateManagementUserInterface>
     </>
   );
 }
