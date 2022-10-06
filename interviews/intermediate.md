@@ -27,3 +27,29 @@ Khi ứng dụng càng lớn, hoặc trong cùng 1 màn hình lại có rất nh
 2. Interal data states: phần state được sử dụng để chứa dữ liệu chính hiển thị cho người dùng
 3. Shared UI states: phần state chung được sử dụng thay đổi về mặt UI ở toàn bộ ứng dụng hoặc các cụm màn hình chung
 4. Shared data states: phần state được sử dụng để chứa các dữ liệu chung của toàn bộ ứng dụng hoặc 1 cụm các màn hình chung
+
+```ts
+const App = () => {
+  const [state, setState] = useState('');
+
+  const handleChange = (event: any) => {
+    setState(event.target.value);
+    // or send request to server here
+  };
+
+  return (
+    <div className="App">
+      <h1>List Product</h1>
+      <form>
+        <label>
+          Search:
+          <input type="text" onChange={handleChange} />
+        </label>
+      </form>
+      <p>Search Value: {state}</p>
+    </div>
+  );
+};
+
+export default App;
+```

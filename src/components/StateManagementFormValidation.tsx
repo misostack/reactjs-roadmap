@@ -1,5 +1,4 @@
 /* eslint-disable no-template-curly-in-string */
-import { debounce } from 'lodash';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import * as yup from 'yup';
@@ -134,13 +133,10 @@ export default function StateManagementFormValidation() {
       });
   };
   // validate data everytime formData changes
-  // validateData(subcribeFormSchema, formData);
-  useEffect(
-    debounce(() => {
-      validateData(subcribeFormSchema, debounceFormData);
-    }, 500),
-    [debounceFormData]
-  );
+
+  useEffect(() => {
+    validateData(subcribeFormSchema, debounceFormData);
+  }, [debounceFormData]);
 
   return (
     <div className="container">
