@@ -1,11 +1,18 @@
+/* eslint-disable no-template-curly-in-string */
+import { debounce } from 'lodash';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
 import * as yup from 'yup';
+import useDebounce from '../helpers/hooks.helpers';
 
 // import { debounce } from 'lodash';
 
 const EMAIL_REGEX =
   /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+
+type ErrorObject = {
+  [field: string]: string[];
+};
 
 const initialStates = {
   formData: {
@@ -14,7 +21,8 @@ const initialStates = {
   },
   formValidationObserver: {
     isValid: false,
-    dirty: false
+    dirty: false,
+    errorObject: {}
   }
 };
 
@@ -29,25 +37,51 @@ function fakeAPICall<T>(res: any): Promise<T> {
   });
 }
 
+yup.setLocale({
+  // use constant translation keys for messages without values
+  mixed: {
+    default: 'invalid',
+    required: 'required'
+  }
+});
+
+/**
+ * Convert yup error into an error object where the keys are the fields and the values are the errors for that field
+ * @param {ValidationError} err The yup error to convert
+ * @returns {ErrorObject} The error object
+ */
+export function yupErrorToErrorObject(err: yup.ValidationError): ErrorObject {
+  const object: ErrorObject = {};
+
+  err.inner.forEach(x => {
+    if (x.path !== undefined) {
+      object[x.path] = x.errors;
+    }
+  });
+
+  return object;
+}
+
 const subcribeFormSchema = yup.object().shape({
-  fullname: yup.string().required(),
+  fullname: yup.string().required().label('fullname'),
   email: yup
     .string()
     .required()
+    .label('email')
     // eslint-disable-next-line no-template-curly-in-string
-    .test('is_valid', '${path}_valid_error', (value, context) => {
+    .test('is_valid', 'invalid', (value, context) => {
       if (value) {
         return EMAIL_REGEX.test(value);
       }
-      return true;
+      return false;
     })
     // eslint-disable-next-line no-template-curly-in-string
-    .test('is_unique', '${path}_unique_error', async (value, _context) => {
-      if (value) {
+    .test('is_unique', 'unique', async (value, _context) => {
+      if (value && EMAIL_REGEX.test(value)) {
         const isUnique = await fakeAPICall<boolean>(true);
         return isUnique;
       }
-      return false;
+      return true;
     })
 });
 
@@ -57,43 +91,57 @@ export default function StateManagementFormValidation() {
   const [formValidationObserver, setFormValidationObserver] = useState(
     initialStates.formValidationObserver
   );
+  const debounceFormData = useDebounce(formData, 500);
   // sync input's values with its state
   const syncInputValueState = (
     fieldName: FieldName,
     event: ChangeEvent<HTMLInputElement>
   ) => {
-    const newFormData = {
-      ...formData
-    };
-    newFormData[fieldName] = event.target.value;
-    setFormData(newFormData);
-    if (!formValidationObserver.dirty) {
-      setFormValidationObserver({
-        ...formValidationObserver,
-        dirty: true
-      });
+    if (formData[fieldName] !== event.target.value) {
+      const newFormData = {
+        ...formData
+      };
+      newFormData[fieldName] = event.target.value;
+      setFormData(newFormData);
+      if (!formValidationObserver.dirty) {
+        setFormValidationObserver({
+          ...formValidationObserver,
+          dirty: true
+        });
+      }
     }
   };
-  // validate data everytime formData changes
-  useEffect(() => {
-    // only run if form is dirty
-    if (formValidationObserver.dirty) {
-      subcribeFormSchema
-        .validate(formData)
-        .then(() => {
-          setFormValidationObserver({
-            ...formValidationObserver,
-            isValid: true
-          });
-        })
-        .catch(err => {
-          setFormValidationObserver({
-            ...formValidationObserver,
-            isValid: !err
-          });
+  const validateData = (schema: typeof subcribeFormSchema, data: any) => {
+    schema
+      .validate(data, { abortEarly: false })
+      .then(() => {
+        setFormValidationObserver({
+          ...formValidationObserver,
+          isValid: true,
+          errorObject: {}
         });
-    }
-  }, [formData]);
+      })
+      .catch((err: yup.ValidationError) => {
+        if (err) {
+          const errorObject = yupErrorToErrorObject(err);
+
+          setFormValidationObserver({
+            ...formValidationObserver,
+            isValid: !err,
+            errorObject
+          });
+        }
+      });
+  };
+  // validate data everytime formData changes
+  // validateData(subcribeFormSchema, formData);
+  useEffect(
+    debounce(() => {
+      validateData(subcribeFormSchema, debounceFormData);
+    }, 500),
+    [debounceFormData]
+  );
+
   return (
     <div className="container">
       <div className="flex justify-center">
@@ -126,6 +174,7 @@ export default function StateManagementFormValidation() {
               />
             </div>
             <div>
+              <p>{JSON.stringify(formValidationObserver.errorObject)}</p>
               <button
                 disabled={!formValidationObserver.isValid}
                 className="bg-red-800 hover:bg-red-600 focus:bg-red-600 text-white leading-16 py-2 block w-full disabled:opacity-50"
