@@ -12,12 +12,13 @@ import React from 'react';
 // import { StateUpdateExample } from './components/StateUpdateExample';
 // import { SyntheticEventExample } from './components/SyntheticEventExample';
 // import { HookExample } from './components/HookExample';
-import StateManagementUserInterface from './components/StateManagementUserInterface';
+// import StateManagementUserInterface from './components/StateManagementUserInterface';
+import StateManagementFormValidation from './components/StateManagementFormValidation';
 
 function App() {
   return (
     <>
-      <StateManagementUserInterface></StateManagementUserInterface>
+      <StateManagementFormValidation></StateManagementFormValidation>
     </>
   );
 }
