@@ -12,13 +12,13 @@ export default function StateStructurePrinciple4() {
     },
     { id: 3, name: 'Angular the right way' }
   ]);
-  const [favoriteBookId, setFavoriteBookId] = useState<number>(0);
-  const favoriteBook = books.find(book => book.id === favoriteBookId);
+  const [favoriteBook, setFavoriteBook] = useState<any>(null);
+
   return (
     <div className="container">
       <h1>StateStructurePrinciple4</h1>
       <div className="bg-green-600 text-white p-4">
-        {favoriteBook?.name || 'Please select your favorite book'}
+        {favoriteBook ? favoriteBook.name : 'Please select your favorite book'}
       </div>
       <div>
         {books.map(book => (
@@ -43,9 +43,9 @@ export default function StateStructurePrinciple4() {
             />
             <button
               className="bg-green-400 rounded-md p-4 disabled:opacity-50"
-              disabled={book.id === favoriteBookId}
+              disabled={favoriteBook && book.id === favoriteBook.id}
               onClick={() => {
-                setFavoriteBookId(book.id);
+                setFavoriteBook(book);
               }}
             >
               Select as favorite book

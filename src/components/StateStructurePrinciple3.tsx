@@ -1,24 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
-const Message = ({ initialColor }: { initialColor: string }) => {
-  const [color, setColor] = useState(initialColor);
-  const className = `bg-${color}-500`;
+const Message = (props: { initialColor: string }) => {
+  const className = `bg-${props.initialColor}-500`;
 
-  useEffect(() => {
-    // update State
-    setColor(initialColor);
-  }, [initialColor]);
   return (
     <>
       <h3 className={className}>Principle 3: Avoid Redundant State</h3>
-      <button
-        className={className}
-        onClick={() => {
-          color === 'green' ? setColor(initialColor) : setColor('green');
-        }}
-      >
-        Switch Color
-      </button>
     </>
   );
 };
