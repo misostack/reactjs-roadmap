@@ -13,12 +13,13 @@ import React from 'react';
 // import { SyntheticEventExample } from './components/SyntheticEventExample';
 // import { HookExample } from './components/HookExample';
 // import StateManagementUserInterface from './components/StateManagementUserInterface';
-import StateManagementFormValidation from './components/StateManagementFormValidation';
+// import StateManagementFormValidation from './components/StateManagementFormValidation';
+import StateStructurePrinciples from './components/StateStructurePrinciples';
 
 function App() {
   return (
     <>
-      <StateManagementFormValidation></StateManagementFormValidation>
+      <StateStructurePrinciples></StateStructurePrinciples>
     </>
   );
 }
