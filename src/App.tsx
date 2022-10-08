@@ -14,12 +14,12 @@ import React from 'react';
 // import { HookExample } from './components/HookExample';
 // import StateManagementUserInterface from './components/StateManagementUserInterface';
 // import StateManagementFormValidation from './components/StateManagementFormValidation';
-import StateStructurePrinciples from './components/StateStructurePrinciples';
+import StateStructurePrinciple4 from './components/StateStructurePrinciple4';
 
 function App() {
   return (
     <>
-      <StateStructurePrinciples></StateStructurePrinciples>
+      <StateStructurePrinciple4></StateStructurePrinciple4>
     </>
   );
 }

@@ -23,7 +23,7 @@ const Message = ({ initialColor }: { initialColor: string }) => {
   );
 };
 
-export default function StateStructurePrinciples() {
+export default function StateStructurePrinciple3() {
   const [defaultColor, setDefaultColor] = useState('blue');
   const supportedColors = useMemo(() => {
     return ['blue', 'red', 'yellow', 'pink'];
