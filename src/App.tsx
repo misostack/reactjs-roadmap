@@ -14,13 +14,16 @@ import React from 'react';
 // import { HookExample } from './components/HookExample';
 // import StateManagementUserInterface from './components/StateManagementUserInterface';
 // import StateManagementFormValidation from './components/StateManagementFormValidation';
-import StateStructurePrinciple3 from './components/StateStructurePrinciple3';
+// import StateStructurePrinciple3 from './components/StateStructurePrinciple3';
 // import StateStructurePrinciple4 from './components/StateStructurePrinciple4';
+import StateManagementReducer from './components/StateManagementReducer';
+import StateManagementScalingUpWithContext from './components/StateManagementScalingUpWithContext';
 
 function App() {
   return (
     <>
-      <StateStructurePrinciple3></StateStructurePrinciple3>
+      <StateManagementScalingUpWithContext></StateManagementScalingUpWithContext>
+      <StateManagementReducer></StateManagementReducer>
     </>
   );
 }
